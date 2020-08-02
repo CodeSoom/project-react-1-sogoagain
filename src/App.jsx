@@ -1,11 +1,9 @@
 import React from 'react';
 
-function App() {
+import Header from './components/Header';
+
+export default function App() {
   return (
-    <header>
-      <h1>창업하자, 아이디어는 내게 맡겨.</h1>
-    </header>
+    <Header />
   );
 }
-
-export default App;
