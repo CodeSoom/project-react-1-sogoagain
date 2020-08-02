@@ -14,6 +14,12 @@ export default function IdeaContainer() {
     dispatch(loadIdea());
   }, []);
 
+  if (!idea.who || !idea.what) {
+    return (
+      <p>생각중...</p>
+    );
+  }
+
   return (
     <IdeaDescription idea={idea} />
   );

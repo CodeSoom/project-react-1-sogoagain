@@ -13,14 +13,16 @@ jest.mock('react-redux');
 describe('IdeaContainer', () => {
   const dispatch = jest.fn();
 
+  beforeEach(() => {
+    dispatch.mockClear();
+    useDispatch.mockImplementation(() => dispatch);
+    useSelector.mockImplementation((selector) => selector({
+      idea: given.idea,
+    }));
+  });
+
   context('with idea', () => {
-    beforeEach(() => {
-      dispatch.mockClear();
-      useDispatch.mockImplementation(() => dispatch);
-      useSelector.mockImplementation((selector) => selector({
-        idea: IDEA,
-      }));
-    });
+    given('idea', () => IDEA);
 
     it('loads idea', () => {
       render(<IdeaContainer />);
@@ -32,6 +34,19 @@ describe('IdeaContainer', () => {
       render(<IdeaContainer />);
 
       expect(screen.getByText(/'프로그래머'를 위한 '맛있는 라면' 어때\?/)).toBeInTheDocument();
+    });
+  });
+
+  context('without idea', () => {
+    given('idea', () => ({
+      who: '',
+      what: '',
+    }));
+
+    it('renders loading', () => {
+      render(<IdeaContainer />);
+
+      expect(screen.getByText(/생각중/)).toBeInTheDocument();
     });
   });
 });
