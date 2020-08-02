@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { render, screen } from '@testing-library/react';
+import { render, screen, fireEvent } from '@testing-library/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -34,6 +34,14 @@ describe('IdeaContainer', () => {
       render(<IdeaContainer />);
 
       expect(screen.getByText(/'프로그래머'를 위한 '맛있는 라면' 어때\?/)).toBeInTheDocument();
+    });
+
+    it('refreshes idea', () => {
+      render(<IdeaContainer />);
+
+      fireEvent.click(screen.getByRole('button', { name: '생각하기' }));
+
+      expect(dispatch).toBeCalledTimes(2);
     });
   });
 

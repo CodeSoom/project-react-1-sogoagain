@@ -17,8 +17,13 @@ describe('idea actions', () => {
   let store;
 
   describe('loadIdea', () => {
+    const initialIdea = {
+      who: '',
+      what: '',
+    };
+
     beforeEach(() => {
-      store = mockStore({ idea: {} });
+      store = mockStore({ idea: initialIdea });
       fetchIdea.mockClear();
       fetchIdea.mockResolvedValue(IDEA);
     });
@@ -29,7 +34,8 @@ describe('idea actions', () => {
       const actions = store.getActions();
 
       expect(fetchIdea).toBeCalled();
-      expect(actions[0]).toEqual(setIdea(IDEA));
+      expect(actions[0]).toEqual(setIdea(initialIdea));
+      expect(actions[1]).toEqual(setIdea(IDEA));
     });
   });
 });

@@ -10,6 +10,10 @@ export default function IdeaContainer() {
   const dispatch = useDispatch();
   const idea = useSelector((state) => state.idea);
 
+  const handleClick = () => {
+    dispatch(loadIdea());
+  };
+
   useEffect(() => {
     dispatch(loadIdea());
   }, []);
@@ -21,6 +25,9 @@ export default function IdeaContainer() {
   }
 
   return (
-    <IdeaDescription idea={idea} />
+    <IdeaDescription
+      idea={idea}
+      onClick={handleClick}
+    />
   );
 }
