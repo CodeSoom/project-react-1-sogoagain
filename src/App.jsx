@@ -1,11 +1,17 @@
 import React from 'react';
 
-function App() {
+import { Switch, Route } from 'react-router-dom';
+
+import Header from './components/Header';
+import IdeaPage from './pages/IdeaPage';
+
+export default function App() {
   return (
-    <header>
-      <h1>창업하자, 아이디어는 내게 맡겨.</h1>
-    </header>
+    <div>
+      <Header />
+      <Switch>
+        <Route exact path="/" component={IdeaPage} />
+      </Switch>
+    </div>
   );
 }
-
-export default App;
