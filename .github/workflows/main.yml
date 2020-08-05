@@ -24,6 +24,8 @@ jobs:
         HEADLESS: true
     - name: Lint
       run: npm run lint
+    - name: Build
+      run: npm run build
     - name: Deploy to GitHub Pages
       if: github.ref == 'refs/heads/master'
       uses: JamesIves/github-pages-deploy-action@3.5.9
