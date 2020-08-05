@@ -16,3 +16,4 @@ package-lock.json
 
 ## Jest
 coverage
+dist
