@@ -4,6 +4,7 @@
   "description": "Let's start up, I have an idea for you.",
   "main": "index.js",
   "scripts": {
+    "build": "webpack --mode production --config webpack.config.js",
     "start": "webpack-dev-server",
     "test": "npm run test:coverage && start-server-and-test start http://localhost:8080 test:e2e",
     "test:e2e": "codeceptjs run --steps",
@@ -42,6 +43,7 @@
     "eslint-plugin-react": "^7.20.5",
     "eslint-plugin-react-hooks": "^4.0.0",
     "given2": "^2.1.7",
+    "html-webpack-plugin": "^4.3.0",
     "jest": "^26.2.1",
     "jest-plugin-context": "^2.9.0",
     "puppeteer": "^5.2.1",
