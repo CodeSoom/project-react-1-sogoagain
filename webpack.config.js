@@ -1,15 +1,24 @@
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Dotenv = require('dotenv-webpack');
 const path = require('path');
 
-module.exports = {
+module.exports = (env, argv) => ({
   entry: path.resolve(__dirname, 'src/index.jsx'),
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle-[hash].js',
+    publicPath: '/',
   },
-  plugins: [new HtmlWebpackPlugin({
-    template: path.resolve(__dirname, 'index.html'),
-  })],
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: path.resolve(__dirname, 'index.html'),
+    }),
+    new Dotenv({
+      path: argv.mode === 'production'
+        ? path.resolve(__dirname, './config/.env.production')
+        : path.resolve(__dirname, './config/.env.development'),
+    }),
+  ],
   module: {
     rules: [
       {
@@ -28,8 +37,6 @@ module.exports = {
     extensions: ['.js', '.jsx'],
   },
   devServer: {
-    historyApiFallback: {
-      index: 'index.html',
-    },
+    historyApiFallback: true,
   },
-};
+});
