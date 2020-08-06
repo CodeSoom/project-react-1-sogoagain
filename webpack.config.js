@@ -7,7 +7,7 @@ module.exports = (env, argv) => ({
   output: {
     path: path.resolve(__dirname, './dist'),
     filename: 'bundle-[hash].js',
-    publicPath: argv.mode === 'production' ? '/' : '/project-react-1-sogoagain',
+    publicPath: argv.mode === 'production' ? '/project-react-1-sogoagain' : '/',
   },
   plugins: [
     new HtmlWebpackPlugin({
