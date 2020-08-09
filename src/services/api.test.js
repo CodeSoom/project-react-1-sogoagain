@@ -1,11 +1,19 @@
-import { fetchIdea, xxx } from './api';
+import { fetchIdea, postItem } from './api';
 
 import IDEA from '../__fixtures__/idea';
 
-global.Math.random = () => 0;
-
 describe('api', () => {
+  const mockFetch = (data) => {
+    global.fetch = jest.fn().mockResolvedValue({
+      async json() { return data; },
+    });
+  };
+
   describe('fetchIdea', () => {
+    beforeEach(() => {
+      mockFetch(IDEA);
+    });
+
     it('fetch idea', async () => {
       const idea = await fetchIdea();
 
@@ -13,10 +21,15 @@ describe('api', () => {
     });
   });
 
-  // Todo: Delete this!
-  describe('xxx', () => {
-    it('xxx', () => {
-      xxx();
+  describe('postItem', () => {
+    beforeEach(() => {
+      mockFetch({});
+    });
+
+    it('post item', async () => {
+      await postItem({ who: '프로그래머' });
+
+      expect(fetch).toBeCalled();
     });
   });
 });

@@ -1,20 +1,15 @@
-const whos = ['프로그래머', '디자이너', '기획자'];
-const whats = ['맛있는 라면', '빠른 자동차', '재미있는 게임'];
-
-function getRandomElement(array) {
-  return array[Math.floor(Math.random() * array.length)];
+export async function fetchIdea() {
+  const url = `${process.env.API_SERVER_ORIGIN}/api/idea`;
+  const response = await fetch(url);
+  const data = await response.json();
+  return data;
 }
 
-export function fetchIdea() {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({
-        who: getRandomElement(whos),
-        what: getRandomElement(whats),
-      });
-    }, 200);
+export async function postItem(item) {
+  const url = `${process.env.API_SERVER_ORIGIN}/api/ideas/items`;
+  await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(item),
   });
 }
-
-// Todo: Delete this!
-export function xxx() {}
