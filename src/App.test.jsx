@@ -1,10 +1,8 @@
 import React from 'react';
 
-import {
-  MemoryRouter,
-} from 'react-router-dom';
+import { MemoryRouter } from 'react-router-dom';
 
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -31,16 +29,17 @@ describe('App', () => {
   });
 
   it('renders title', () => {
-    renderApp({ path: '/' });
+    const { container } = renderApp({ path: '/' });
 
-    expect(screen.getByText(/창업하자, 아이디어는 내게 맡겨./)).toBeInTheDocument();
+    expect(container).toHaveTextContent('창업하자, 아이디어는 내게 맡겨.');
   });
 
   context('with path /', () => {
     it('renders the idea page', () => {
-      renderApp({ path: '/' });
+      const { container } = renderApp({ path: '/' });
 
-      expect(screen.getByText(/'프로그래머'를 위한 '맛있는 라면' 어때\?/)).toBeInTheDocument();
+      expect(container)
+        .toHaveTextContent(`'${IDEA.who}'를 위한 '${IDEA.what}' 어때?`);
     });
   });
 });
