@@ -7,11 +7,11 @@ import IdeaPage from './pages/IdeaPage';
 
 export default function App() {
   return (
-    <div>
+    <>
       <Header />
       <Switch>
         <Route exact path="/" component={IdeaPage} />
       </Switch>
-    </div>
+    </>
   );
 }
