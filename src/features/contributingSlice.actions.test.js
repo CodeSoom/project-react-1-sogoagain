@@ -6,6 +6,7 @@ import { postItem } from '../services/api';
 
 import { setField, contributeItem } from './contributingSlice';
 
+jest.useFakeTimers();
 jest.mock('../services/api');
 
 const middlewares = [thunk];
@@ -34,6 +35,8 @@ describe('contributing actions', () => {
       await store.dispatch(contributeItem());
 
       const actions = store.getActions();
+
+      jest.runAllTimers();
 
       expect(postItem).toBeCalled();
       expect(actions[1]).toEqual(setField({ name: 'who', value: '' }));
