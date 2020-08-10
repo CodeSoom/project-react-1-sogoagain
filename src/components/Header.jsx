@@ -1,9 +1,9 @@
 import React from 'react';
 
-export default function Header() {
+export default function Header({ title }) {
   return (
     <header>
-      <h1>창업하자, 아이디어는 내게 맡겨.</h1>
+      <h1>{title}</h1>
     </header>
   );
 }
