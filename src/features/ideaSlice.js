@@ -20,7 +20,9 @@ export const { setIdea } = actions;
 export function loadIdea() {
   return async (dispatch) => {
     dispatch(setIdea(initialState));
+
     const idea = await fetchIdea();
+
     dispatch(setIdea(idea));
   };
 }
