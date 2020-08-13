@@ -14,30 +14,58 @@ const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
 describe('idea actions', () => {
+  const initialIdea = {
+    resource: {
+      who: '',
+      what: '',
+    },
+  };
   let store;
 
-  describe('loadIdea', () => {
-    const initialIdea = {
-      resource: {
-        who: '',
-        what: '',
-      },
-    };
+  beforeEach(() => {
+    store = mockStore({ idea: initialIdea });
+  });
 
-    beforeEach(() => {
-      store = mockStore({ idea: initialIdea });
-      fetchIdea.mockClear();
-      fetchIdea.mockResolvedValue(IDEA);
-      postIdea.mockClear();
+  describe('loadIdea', () => {
+    context('when idea is fetched', () => {
+      beforeEach(() => {
+        fetchIdea.mockClear();
+        fetchIdea.mockResolvedValue(IDEA);
+      });
+
+      it('loads idea', async () => {
+        await store.dispatch(loadIdea());
+
+        const actions = store.getActions();
+
+        expect(fetchIdea).toBeCalled();
+        expect(actions[1]).toEqual(setIdea(IDEA));
+      });
     });
 
-    it('loads idea', async () => {
-      await store.dispatch(loadIdea());
+    context('when idea cannot be fetched', () => {
+      beforeEach(() => {
+        fetchIdea.mockClear();
+        fetchIdea.mockRejectedValue(new Error('Fetch error'));
+      });
 
-      const actions = store.getActions();
+      it('renders question mark', async () => {
+        await store.dispatch(loadIdea());
 
-      expect(fetchIdea).toBeCalled();
-      expect(actions[1]).toEqual(setIdea(IDEA));
+        const actions = store.getActions();
+
+        expect(fetchIdea).toBeCalled();
+        expect(actions[1]).toEqual(setIdea({
+          who: '?',
+          what: '?',
+        }));
+      });
+    });
+  });
+
+  describe('likeIdea', () => {
+    beforeEach(() => {
+      postIdea.mockClear();
     });
 
     it('likes idea', async () => {

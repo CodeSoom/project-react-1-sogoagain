@@ -41,7 +41,15 @@ export function loadIdea() {
   return async (dispatch) => {
     dispatch(setLoading(true));
 
-    const idea = await fetchIdea();
+    let idea;
+    try {
+      idea = await fetchIdea();
+    } catch (err) {
+      idea = {
+        who: '?',
+        what: '?',
+      };
+    }
 
     batch(() => {
       dispatch(setIdea(idea));
