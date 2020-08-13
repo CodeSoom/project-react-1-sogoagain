@@ -7,17 +7,20 @@ import IdeaDescription from './IdeaDescription';
 import IDEA from '../__fixtures__/idea';
 
 describe('IdeaDescription', () => {
-  const handleClick = jest.fn();
+  const handleClickThink = jest.fn();
+  const handleClickLike = jest.fn();
 
   function renderIdeaDescription() {
     render(<IdeaDescription
       idea={IDEA}
-      onClick={handleClick}
+      onClickThink={handleClickThink}
+      onClickLike={handleClickLike}
     />);
   }
 
   beforeEach(() => {
-    handleClick.mockClear();
+    handleClickThink.mockClear();
+    handleClickLike.mockClear();
   });
 
   it('renders idea', () => {
@@ -31,6 +34,14 @@ describe('IdeaDescription', () => {
 
     fireEvent.click(screen.getByRole('button', { name: '생각하기' }));
 
-    expect(handleClick).toBeCalled();
+    expect(handleClickThink).toBeCalled();
+  });
+
+  it('likes idea', () => {
+    renderIdeaDescription();
+
+    fireEvent.click(screen.getByRole('button', { name: '좋아요' }));
+
+    expect(handleClickLike).toBeCalled();
   });
 });

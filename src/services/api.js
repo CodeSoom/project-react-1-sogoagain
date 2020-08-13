@@ -13,3 +13,12 @@ export async function postItem(item) {
     body: JSON.stringify(item),
   });
 }
+
+export async function postIdea({ who, what }) {
+  const url = `${process.env.API_SERVER_ORIGIN}/api/ideas`;
+  await fetch(url, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ who, what }),
+  });
+}

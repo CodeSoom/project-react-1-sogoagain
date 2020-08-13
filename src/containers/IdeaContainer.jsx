@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { loadIdea } from '../features/ideaSlice';
+import { loadIdea, likeIdea } from '../features/ideaSlice';
 
 import IdeaDescription from '../components/IdeaDescription';
 
@@ -10,8 +10,12 @@ export default function IdeaContainer() {
   const dispatch = useDispatch();
   const idea = useSelector((state) => state.idea);
 
-  const handleClick = () => {
+  const handleClickThink = () => {
     dispatch(loadIdea());
+  };
+
+  const handleClickLike = () => {
+    dispatch(likeIdea());
   };
 
   useEffect(() => {
@@ -27,7 +31,8 @@ export default function IdeaContainer() {
   return (
     <IdeaDescription
       idea={idea}
-      onClick={handleClick}
+      onClickThink={handleClickThink}
+      onClickLike={handleClickLike}
     />
   );
 }

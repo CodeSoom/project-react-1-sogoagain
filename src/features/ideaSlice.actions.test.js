@@ -2,9 +2,9 @@ import thunk from 'redux-thunk';
 
 import configureStore from 'redux-mock-store';
 
-import { fetchIdea } from '../services/api';
+import { fetchIdea, postIdea } from '../services/api';
 
-import { setIdea, loadIdea } from './ideaSlice';
+import { setIdea, loadIdea, likeIdea } from './ideaSlice';
 
 import IDEA from '../__fixtures__/idea';
 
@@ -26,9 +26,10 @@ describe('idea actions', () => {
       store = mockStore({ idea: initialIdea });
       fetchIdea.mockClear();
       fetchIdea.mockResolvedValue(IDEA);
+      postIdea.mockClear();
     });
 
-    it('fetch idea', async () => {
+    it('loads idea', async () => {
       await store.dispatch(loadIdea());
 
       const actions = store.getActions();
@@ -36,6 +37,12 @@ describe('idea actions', () => {
       expect(fetchIdea).toBeCalled();
       expect(actions[0]).toEqual(setIdea(initialIdea));
       expect(actions[1]).toEqual(setIdea(IDEA));
+    });
+
+    it('likes idea', async () => {
+      await store.dispatch(likeIdea());
+
+      expect(postIdea).toBeCalledWith(initialIdea);
     });
   });
 });

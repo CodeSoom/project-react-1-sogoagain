@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function IdeaDescription({ idea: { who, what }, onClick }) {
+export default function IdeaDescription({ idea: { who, what }, onClickThink, onClickLike }) {
   return (
     <div>
       <p>
@@ -8,9 +8,15 @@ export default function IdeaDescription({ idea: { who, what }, onClick }) {
       </p>
       <button
         type="button"
-        onClick={onClick}
+        onClick={onClickThink}
       >
         생각하기
+      </button>
+      <button
+        type="button"
+        onClick={onClickLike}
+      >
+        좋아요
       </button>
     </div>
   );

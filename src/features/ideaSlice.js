@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchIdea } from '../services/api';
+import { fetchIdea, postIdea } from '../services/api';
 
 const initialState = {
   who: '',
@@ -24,6 +24,13 @@ export function loadIdea() {
     const idea = await fetchIdea();
 
     dispatch(setIdea(idea));
+  };
+}
+
+export function likeIdea() {
+  return async (dispatch, getState) => {
+    const { idea: { who, what } } = getState();
+    await postIdea({ who, what });
   };
 }
 

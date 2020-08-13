@@ -43,6 +43,14 @@ describe('IdeaContainer', () => {
 
       expect(dispatch).toBeCalledTimes(2);
     });
+
+    it('likes idea', () => {
+      render(<IdeaContainer />);
+
+      fireEvent.click(screen.getByRole('button', { name: '좋아요' }));
+
+      expect(dispatch).toBeCalledTimes(2);
+    });
   });
 
   context('without idea', () => {
