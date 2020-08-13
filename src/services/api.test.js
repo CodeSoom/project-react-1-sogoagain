@@ -27,6 +27,7 @@ describe('api', () => {
     context('when idea cannot be fetched', () => {
       beforeEach(() => {
         given('ok', () => false);
+        mockFetch({});
       });
 
       it('throws error', async () => {

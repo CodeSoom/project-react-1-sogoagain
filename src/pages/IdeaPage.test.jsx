@@ -18,6 +18,10 @@ describe('IdeaPage', () => {
     useDispatch.mockImplementation(() => dispatch);
     useSelector.mockImplementation((state) => state({
       idea: {
+        alert: {
+          type: 'error',
+          message: '생각이 잘 안나네요, 다시 생각해볼까요?',
+        },
         resource: IDEA,
       },
     }));

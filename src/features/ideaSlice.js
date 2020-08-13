@@ -8,6 +8,10 @@ const { actions, reducer } = createSlice({
   initialState: {
     loading: false,
     liked: false,
+    alert: {
+      type: '',
+      message: '',
+    },
     resource: {
       who: '',
       what: '',
@@ -32,19 +36,40 @@ const { actions, reducer } = createSlice({
       ...state,
       liked,
     }),
+
+    setAlert: (state, { payload: { type, message } }) => ({
+      ...state,
+      alert: {
+        ...state.alert,
+        type,
+        message,
+      },
+    }),
   },
 });
 
-export const { setIdea, setLoading, setLiked } = actions;
+export const {
+  setIdea,
+  setLoading,
+  setLiked,
+  setAlert,
+} = actions;
 
 export function loadIdea() {
   return async (dispatch) => {
-    dispatch(setLoading(true));
+    batch(() => {
+      dispatch(setLoading(true));
+      dispatch(setAlert({ type: '', message: '' }));
+    });
 
     let idea;
     try {
       idea = await fetchIdea();
     } catch (err) {
+      dispatch(setAlert({
+        type: 'error',
+        message: '생각이 잘 안나네요, 다시 생각해볼까요?',
+      }));
       idea = {
         who: '?',
         what: '?',

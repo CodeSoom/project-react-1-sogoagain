@@ -1,4 +1,6 @@
-import ideaReducer, { setIdea, setLoading, setLiked } from './ideaSlice';
+import ideaReducer, {
+  setIdea, setLoading, setLiked, setAlert,
+} from './ideaSlice';
 
 import IDEA from '../__fixtures__/idea';
 
@@ -35,6 +37,23 @@ describe('idea reducer', () => {
       const state = ideaReducer(previousState, setLiked(true));
 
       expect(state.liked).toBeTruthy();
+    });
+
+    it('changes alert', () => {
+      const previousState = {
+        alert: {
+          type: '',
+          message: '',
+        },
+      };
+      const alert = {
+        type: 'error',
+        message: '생각이 잘 안나네요, 다시 생각해볼까요?',
+      };
+
+      const state = ideaReducer(previousState, setAlert(alert));
+
+      expect(state.alert).toEqual(alert);
     });
   });
 });
