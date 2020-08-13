@@ -18,13 +18,14 @@ describe('IdeaContainer', () => {
     dispatch.mockClear();
     useSelector.mockImplementation((selector) => selector({
       idea: {
-        resource: given.resource,
+        loading: given.loading,
+        resource: IDEA,
       },
     }));
   });
 
-  context('with idea', () => {
-    given('resource', () => IDEA);
+  context('when not loading', () => {
+    given('loading', () => false);
 
     it('renders idea', () => {
       render(<IdeaContainer />);
@@ -43,17 +44,15 @@ describe('IdeaContainer', () => {
     it('likes idea', () => {
       render(<IdeaContainer />);
 
-      fireEvent.click(screen.getByRole('button', { name: '좋아요' }));
+      const likeButton = screen.getByRole('button', { name: '좋아요' });
+      fireEvent.click(likeButton);
 
       expect(dispatch).toBeCalledTimes(1);
     });
   });
 
-  context('without idea', () => {
-    given('resource', () => ({
-      who: '',
-      what: '',
-    }));
+  context('when loading', () => {
+    given('loading', () => true);
 
     it('renders loading', () => {
       render(<IdeaContainer />);

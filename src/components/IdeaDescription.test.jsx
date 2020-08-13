@@ -13,6 +13,7 @@ describe('IdeaDescription', () => {
   function renderIdeaDescription() {
     render(<IdeaDescription
       idea={IDEA}
+      liked={given.liked}
       onClickThink={handleClickThink}
       onClickLike={handleClickLike}
     />);
@@ -37,11 +38,27 @@ describe('IdeaDescription', () => {
     expect(handleClickThink).toBeCalled();
   });
 
-  it('likes idea', () => {
-    renderIdeaDescription();
+  describe('likes idea', () => {
+    context('when not liked', () => {
+      given('liked', () => false);
 
-    fireEvent.click(screen.getByRole('button', { name: '좋아요' }));
+      it('can like idea', () => {
+        renderIdeaDescription();
 
-    expect(handleClickLike).toBeCalled();
+        fireEvent.click(screen.getByRole('button', { name: '좋아요' }));
+
+        expect(handleClickLike).toBeCalled();
+      });
+    });
+
+    context('when liked', () => {
+      given('liked', () => true);
+
+      it('disabled like button', () => {
+        renderIdeaDescription();
+
+        expect(screen.getByRole('button', { name: '좋아요' })).toBeDisabled();
+      });
+    });
   });
 });

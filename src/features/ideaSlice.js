@@ -1,17 +1,18 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { batch } from 'react-redux';
 import { fetchIdea, postIdea } from '../services/api';
-
-const initialState = {
-  resource: {
-    who: '',
-    what: '',
-  },
-};
 
 const { actions, reducer } = createSlice({
   name: 'idea',
-  initialState,
+  initialState: {
+    loading: false,
+    liked: false,
+    resource: {
+      who: '',
+      what: '',
+    },
+  },
   reducers: {
     setIdea: (state, { payload: { who, what } }) => ({
       ...state,
@@ -21,24 +22,40 @@ const { actions, reducer } = createSlice({
         what,
       },
     }),
+
+    setLoading: (state, { payload: loading }) => ({
+      ...state,
+      loading,
+    }),
+
+    setLiked: (state, { payload: liked }) => ({
+      ...state,
+      liked,
+    }),
   },
 });
 
-export const { setIdea } = actions;
+export const { setIdea, setLoading, setLiked } = actions;
 
 export function loadIdea() {
   return async (dispatch) => {
-    dispatch(setIdea(initialState.resource));
+    dispatch(setLoading(true));
 
     const idea = await fetchIdea();
 
-    dispatch(setIdea(idea));
+    batch(() => {
+      dispatch(setIdea(idea));
+      dispatch(setLiked(false));
+      dispatch(setLoading(false));
+    });
   };
 }
 
 export function likeIdea() {
   return async (dispatch, getState) => {
     const { idea: { resource: { who, what } } } = getState();
+
+    dispatch(setLiked(true));
     await postIdea({ who, what });
   };
 }

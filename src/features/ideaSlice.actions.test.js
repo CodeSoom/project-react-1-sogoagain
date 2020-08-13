@@ -37,7 +37,6 @@ describe('idea actions', () => {
       const actions = store.getActions();
 
       expect(fetchIdea).toBeCalled();
-      expect(actions[0]).toEqual(setIdea(initialIdea.resource));
       expect(actions[1]).toEqual(setIdea(IDEA));
     });
 
