@@ -3,15 +3,24 @@ import { createSlice } from '@reduxjs/toolkit';
 import { fetchIdea, postIdea } from '../services/api';
 
 const initialState = {
-  who: '',
-  what: '',
+  resource: {
+    who: '',
+    what: '',
+  },
 };
 
 const { actions, reducer } = createSlice({
   name: 'idea',
   initialState,
   reducers: {
-    setIdea: (state, { payload: { who, what } }) => ({ ...state, who, what }),
+    setIdea: (state, { payload: { who, what } }) => ({
+      ...state,
+      resource: {
+        ...state.resource,
+        who,
+        what,
+      },
+    }),
   },
 });
 
@@ -19,7 +28,7 @@ export const { setIdea } = actions;
 
 export function loadIdea() {
   return async (dispatch) => {
-    dispatch(setIdea(initialState));
+    dispatch(setIdea(initialState.resource));
 
     const idea = await fetchIdea();
 
@@ -29,7 +38,7 @@ export function loadIdea() {
 
 export function likeIdea() {
   return async (dispatch, getState) => {
-    const { idea: { who, what } } = getState();
+    const { idea: { resource: { who, what } } } = getState();
     await postIdea({ who, what });
   };
 }

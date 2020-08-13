@@ -23,7 +23,9 @@ function renderApp({ path }) {
 describe('App', () => {
   useDispatch.mockImplementation(() => jest.fn());
   useSelector.mockImplementation((selector) => selector({
-    idea: IDEA,
+    idea: {
+      resource: IDEA,
+    },
     contributing: {
       fields: {
         who: '',

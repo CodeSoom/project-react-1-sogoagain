@@ -17,12 +17,14 @@ describe('IdeaContainer', () => {
   beforeEach(() => {
     dispatch.mockClear();
     useSelector.mockImplementation((selector) => selector({
-      idea: given.idea,
+      idea: {
+        resource: given.resource,
+      },
     }));
   });
 
   context('with idea', () => {
-    given('idea', () => IDEA);
+    given('resource', () => IDEA);
 
     it('renders idea', () => {
       render(<IdeaContainer />);
@@ -48,7 +50,7 @@ describe('IdeaContainer', () => {
   });
 
   context('without idea', () => {
-    given('idea', () => ({
+    given('resource', () => ({
       who: '',
       what: '',
     }));

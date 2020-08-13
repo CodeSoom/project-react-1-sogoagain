@@ -8,7 +8,7 @@ import IdeaDescription from '../components/IdeaDescription';
 
 export default function IdeaContainer() {
   const dispatch = useDispatch();
-  const idea = useSelector((state) => state.idea);
+  const { resource } = useSelector((state) => state.idea);
 
   const handleClickThink = () => {
     dispatch(loadIdea());
@@ -18,7 +18,7 @@ export default function IdeaContainer() {
     dispatch(likeIdea());
   };
 
-  if (!idea.who || !idea.what) {
+  if (!resource.who || !resource.what) {
     return (
       <p>생각중...</p>
     );
@@ -26,7 +26,7 @@ export default function IdeaContainer() {
 
   return (
     <IdeaDescription
-      idea={idea}
+      idea={resource}
       onClickThink={handleClickThink}
       onClickLike={handleClickLike}
     />

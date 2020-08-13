@@ -18,8 +18,10 @@ describe('idea actions', () => {
 
   describe('loadIdea', () => {
     const initialIdea = {
-      who: '',
-      what: '',
+      resource: {
+        who: '',
+        what: '',
+      },
     };
 
     beforeEach(() => {
@@ -35,14 +37,14 @@ describe('idea actions', () => {
       const actions = store.getActions();
 
       expect(fetchIdea).toBeCalled();
-      expect(actions[0]).toEqual(setIdea(initialIdea));
+      expect(actions[0]).toEqual(setIdea(initialIdea.resource));
       expect(actions[1]).toEqual(setIdea(IDEA));
     });
 
     it('likes idea', async () => {
       await store.dispatch(likeIdea());
 
-      expect(postIdea).toBeCalledWith(initialIdea);
+      expect(postIdea).toBeCalledWith(initialIdea.resource);
     });
   });
 });

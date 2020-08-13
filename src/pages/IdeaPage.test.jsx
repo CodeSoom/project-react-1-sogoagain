@@ -17,7 +17,9 @@ describe('IdeaPage', () => {
     dispatch.mockClear();
     useDispatch.mockImplementation(() => dispatch);
     useSelector.mockImplementation((state) => state({
-      idea: IDEA,
+      idea: {
+        resource: IDEA,
+      },
     }));
   });
 
