@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
@@ -17,10 +17,6 @@ export default function IdeaContainer() {
   const handleClickLike = () => {
     dispatch(likeIdea());
   };
-
-  useEffect(() => {
-    dispatch(loadIdea());
-  }, []);
 
   if (!idea.who || !idea.what) {
     return (

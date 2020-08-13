@@ -24,12 +24,6 @@ describe('IdeaContainer', () => {
   context('with idea', () => {
     given('idea', () => IDEA);
 
-    it('loads idea', () => {
-      render(<IdeaContainer />);
-
-      expect(dispatch).toBeCalled();
-    });
-
     it('renders idea', () => {
       render(<IdeaContainer />);
 
@@ -41,7 +35,7 @@ describe('IdeaContainer', () => {
 
       fireEvent.click(screen.getByRole('button', { name: '생각하기' }));
 
-      expect(dispatch).toBeCalledTimes(2);
+      expect(dispatch).toBeCalledTimes(1);
     });
 
     it('likes idea', () => {
@@ -49,7 +43,7 @@ describe('IdeaContainer', () => {
 
       fireEvent.click(screen.getByRole('button', { name: '좋아요' }));
 
-      expect(dispatch).toBeCalledTimes(2);
+      expect(dispatch).toBeCalledTimes(1);
     });
   });
 
