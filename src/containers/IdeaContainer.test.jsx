@@ -26,8 +26,9 @@ describe('IdeaContainer', () => {
   });
 
   context('when not loading', () => {
+    given('loading', () => false);
+
     context('without alert', () => {
-      given('loading', () => false);
       given('alert', () => ({
         type: '',
         message: '',
