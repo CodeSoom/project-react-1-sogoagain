@@ -4,18 +4,16 @@ import { batch } from 'react-redux';
 
 import { postItem } from '../services/api';
 
-const initialState = {
-  loading: false,
-  message: '',
-  fields: {
-    who: '',
-    what: '',
-  },
-};
-
 const { actions, reducer } = createSlice({
   name: 'contributing',
-  initialState,
+  initialState: {
+    loading: false,
+    message: '',
+    fields: {
+      who: '',
+      what: '',
+    },
+  },
   reducers: {
     setField: (state, { payload: { name, value } }) => ({
       ...state,

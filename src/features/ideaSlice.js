@@ -1,29 +1,95 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { fetchIdea } from '../services/api';
-
-const initialState = {
-  who: '',
-  what: '',
-};
+import { batch } from 'react-redux';
+import { fetchIdea, postIdea } from '../services/api';
 
 const { actions, reducer } = createSlice({
   name: 'idea',
-  initialState,
+  initialState: {
+    loading: false,
+    liked: false,
+    alert: {
+      type: '',
+      message: '',
+    },
+    resource: {
+      who: '',
+      what: '',
+    },
+  },
   reducers: {
-    setIdea: (state, { payload: { who, what } }) => ({ ...state, who, what }),
+    setIdea: (state, { payload: { who, what } }) => ({
+      ...state,
+      resource: {
+        ...state.resource,
+        who,
+        what,
+      },
+    }),
+
+    setLoading: (state, { payload: loading }) => ({
+      ...state,
+      loading,
+    }),
+
+    setLiked: (state, { payload: liked }) => ({
+      ...state,
+      liked,
+    }),
+
+    setAlert: (state, { payload: { type, message } }) => ({
+      ...state,
+      alert: {
+        ...state.alert,
+        type,
+        message,
+      },
+    }),
   },
 });
 
-export const { setIdea } = actions;
+export const {
+  setIdea,
+  setLoading,
+  setLiked,
+  setAlert,
+} = actions;
 
 export function loadIdea() {
   return async (dispatch) => {
-    dispatch(setIdea(initialState));
+    batch(() => {
+      dispatch(setLoading(true));
+      dispatch(setAlert({ type: '', message: '' }));
+    });
 
-    const idea = await fetchIdea();
+    let idea;
+    try {
+      idea = await fetchIdea();
+    } catch (err) {
+      dispatch(setAlert({
+        type: 'error',
+        message: '생각이 잘 안나네요, 다시 생각해볼까요?',
+      }));
+      idea = {
+        who: '?',
+        what: '?',
+      };
+    }
 
-    dispatch(setIdea(idea));
+    batch(() => {
+      dispatch(setIdea(idea));
+      dispatch(setLiked(false));
+      dispatch(setLoading(false));
+    });
+  };
+}
+
+export function likeIdea() {
+  return async (dispatch, getState) => {
+    const { idea: { resource: { who, what } } } = getState();
+
+    dispatch(setLiked(true));
+    await postIdea({ who, what });
   };
 }
 

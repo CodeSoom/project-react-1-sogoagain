@@ -11,11 +11,19 @@ import IDEA from '../__fixtures__/idea';
 jest.mock('react-redux');
 
 describe('IdeaPage', () => {
+  const dispatch = jest.fn();
+
   beforeEach(() => {
-    const dispatch = jest.fn();
+    dispatch.mockClear();
     useDispatch.mockImplementation(() => dispatch);
     useSelector.mockImplementation((state) => state({
-      idea: IDEA,
+      idea: {
+        alert: {
+          type: 'error',
+          message: '생각이 잘 안나네요, 다시 생각해볼까요?',
+        },
+        resource: IDEA,
+      },
     }));
   });
 
@@ -23,5 +31,6 @@ describe('IdeaPage', () => {
     render(<IdeaPage />);
 
     expect(screen.getByText(/'프로그래머'를 위한 '맛있는 라면' 어때\?/)).toBeInTheDocument();
+    expect(dispatch).toBeCalled();
   });
 });

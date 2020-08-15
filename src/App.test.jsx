@@ -23,7 +23,13 @@ function renderApp({ path }) {
 describe('App', () => {
   useDispatch.mockImplementation(() => jest.fn());
   useSelector.mockImplementation((selector) => selector({
-    idea: IDEA,
+    idea: {
+      alert: {
+        type: 'error',
+        message: '생각이 잘 안나네요, 다시 생각해볼까요?',
+      },
+      resource: IDEA,
+    },
     contributing: {
       fields: {
         who: '',

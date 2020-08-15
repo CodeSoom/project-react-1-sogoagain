@@ -1,33 +1,41 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { loadIdea } from '../features/ideaSlice';
+import { loadIdea, likeIdea } from '../features/ideaSlice';
 
 import IdeaDescription from '../components/IdeaDescription';
+import Alert from '../components/Alert';
 
 export default function IdeaContainer() {
   const dispatch = useDispatch();
-  const idea = useSelector((state) => state.idea);
+  const {
+    loading, liked, alert: { type, message }, resource,
+  } = useSelector((state) => state.idea);
 
-  const handleClick = () => {
+  const handleClickThink = () => {
     dispatch(loadIdea());
   };
 
-  useEffect(() => {
-    dispatch(loadIdea());
-  }, []);
+  const handleClickLike = () => {
+    dispatch(likeIdea());
+  };
 
-  if (!idea.who || !idea.what) {
+  if (loading) {
     return (
       <p>생각중...</p>
     );
   }
 
   return (
-    <IdeaDescription
-      idea={idea}
-      onClick={handleClick}
-    />
+    <>
+      <IdeaDescription
+        idea={resource}
+        liked={liked || type}
+        onClickThink={handleClickThink}
+        onClickLike={handleClickLike}
+      />
+      {type && (<Alert message={message} />)}
+    </>
   );
 }

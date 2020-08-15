@@ -2,9 +2,11 @@ import thunk from 'redux-thunk';
 
 import configureStore from 'redux-mock-store';
 
-import { fetchIdea } from '../services/api';
+import { fetchIdea, postIdea } from '../services/api';
 
-import { setIdea, loadIdea } from './ideaSlice';
+import {
+  setIdea, loadIdea, likeIdea, setAlert,
+} from './ideaSlice';
 
 import IDEA from '../__fixtures__/idea';
 
@@ -14,28 +16,68 @@ const middlewares = [thunk];
 const mockStore = configureStore(middlewares);
 
 describe('idea actions', () => {
-  let store;
-
-  describe('loadIdea', () => {
-    const initialIdea = {
+  const initialIdea = {
+    resource: {
       who: '',
       what: '',
-    };
+    },
+  };
+  let store;
 
-    beforeEach(() => {
-      store = mockStore({ idea: initialIdea });
-      fetchIdea.mockClear();
-      fetchIdea.mockResolvedValue(IDEA);
+  beforeEach(() => {
+    store = mockStore({ idea: initialIdea });
+  });
+
+  describe('loadIdea', () => {
+    context('when idea is fetched', () => {
+      beforeEach(() => {
+        fetchIdea.mockClear();
+        fetchIdea.mockResolvedValue(IDEA);
+      });
+
+      it('loads idea', async () => {
+        await store.dispatch(loadIdea());
+
+        const actions = store.getActions();
+
+        expect(fetchIdea).toBeCalled();
+        expect(actions[2]).toEqual(setIdea(IDEA));
+      });
     });
 
-    it('fetch idea', async () => {
-      await store.dispatch(loadIdea());
+    context('when idea cannot be fetched', () => {
+      beforeEach(() => {
+        fetchIdea.mockClear();
+        fetchIdea.mockRejectedValue(new Error('Fetch error'));
+      });
 
-      const actions = store.getActions();
+      it('renders question mark', async () => {
+        await store.dispatch(loadIdea());
 
-      expect(fetchIdea).toBeCalled();
-      expect(actions[0]).toEqual(setIdea(initialIdea));
-      expect(actions[1]).toEqual(setIdea(IDEA));
+        const actions = store.getActions();
+
+        expect(fetchIdea).toBeCalled();
+        expect(actions[2]).toEqual(setAlert({
+          type: 'error',
+          message: '생각이 잘 안나네요, 다시 생각해볼까요?',
+        }));
+        expect(actions[3]).toEqual(setIdea({
+          who: '?',
+          what: '?',
+        }));
+      });
+    });
+  });
+
+  describe('likeIdea', () => {
+    beforeEach(() => {
+      postIdea.mockClear();
+    });
+
+    it('likes idea', async () => {
+      await store.dispatch(likeIdea());
+
+      expect(postIdea).toBeCalledWith(initialIdea.resource);
     });
   });
 });

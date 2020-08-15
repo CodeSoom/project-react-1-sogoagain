@@ -17,38 +17,74 @@ describe('IdeaContainer', () => {
   beforeEach(() => {
     dispatch.mockClear();
     useSelector.mockImplementation((selector) => selector({
-      idea: given.idea,
+      idea: {
+        loading: given.loading,
+        alert: given.alert,
+        resource: IDEA,
+      },
     }));
   });
 
-  context('with idea', () => {
-    given('idea', () => IDEA);
+  context('when not loading', () => {
+    given('loading', () => false);
 
-    it('loads idea', () => {
-      render(<IdeaContainer />);
+    context('without alert', () => {
+      given('alert', () => ({
+        type: '',
+        message: '',
+      }));
 
-      expect(dispatch).toBeCalled();
+      it('renders idea', () => {
+        render(<IdeaContainer />);
+
+        expect(screen.getByText(/'프로그래머'를 위한 '맛있는 라면' 어때\?/)).toBeInTheDocument();
+      });
+
+      it('refreshes idea', () => {
+        render(<IdeaContainer />);
+
+        fireEvent.click(screen.getByRole('button', { name: '생각하기' }));
+
+        expect(dispatch).toBeCalledTimes(1);
+      });
+
+      it('likes idea', () => {
+        render(<IdeaContainer />);
+
+        const likeButton = screen.getByRole('button', { name: '좋아요' });
+        fireEvent.click(likeButton);
+
+        expect(dispatch).toBeCalledTimes(1);
+      });
     });
 
-    it('renders idea', () => {
-      render(<IdeaContainer />);
+    context('with alert', () => {
+      given('alert', () => ({
+        type: 'error',
+        message: '생각이 잘 안나네요, 다시 생각해볼까요?',
+      }));
 
-      expect(screen.getByText(/'프로그래머'를 위한 '맛있는 라면' 어때\?/)).toBeInTheDocument();
-    });
+      it('renders alert message', () => {
+        render(<IdeaContainer />);
 
-    it('refreshes idea', () => {
-      render(<IdeaContainer />);
+        expect(screen.getByText(/생각이 잘 안나네요, 다시 생각해볼까요?/)).toBeInTheDocument();
+      });
 
-      fireEvent.click(screen.getByRole('button', { name: '생각하기' }));
+      it('disable like button', () => {
+        render(<IdeaContainer />);
 
-      expect(dispatch).toBeCalledTimes(2);
+        const likeButton = screen.getByRole('button', { name: '좋아요' });
+
+        expect(likeButton).toBeDisabled();
+      });
     });
   });
 
-  context('without idea', () => {
-    given('idea', () => ({
-      who: '',
-      what: '',
+  context('when loading', () => {
+    given('loading', () => true);
+    given('alert', () => ({
+      type: '',
+      message: '',
     }));
 
     it('renders loading', () => {
