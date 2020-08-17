@@ -27,13 +27,13 @@ describe('IdeaDescription', () => {
   it('renders idea', () => {
     renderIdeaDescription();
 
-    expect(screen.getByText(/'프로그래머'를 위한 '맛있는 라면' 어때\?/)).toBeInTheDocument();
+    expect(screen.getByText(/'프로그래머'를 위한 '맛있는 라면'/)).toBeInTheDocument();
   });
 
   it('refreshes idea', () => {
     renderIdeaDescription();
 
-    fireEvent.click(screen.getByRole('button', { name: '생각하기' }));
+    fireEvent.click(screen.getByRole('button', { name: '아이디어 있어?' }));
 
     expect(handleClickThink).toBeCalled();
   });

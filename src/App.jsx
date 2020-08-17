@@ -10,10 +10,10 @@ export default function App() {
   return (
     <>
       <Link to="/">
-        <Header title="창업하자, 아이디어는 내게 맡겨." />
+        <Header title="창업하자! 아이디어는 내게 맡겨!" />
       </Link>
       <Link to="/contributing">
-        아이디어 기여하기
+        기여하기
       </Link>
       <Switch>
         <Route exact path="/" component={IdeaPage} />

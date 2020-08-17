@@ -41,13 +41,13 @@ describe('App', () => {
   it('renders title', () => {
     const { container } = renderApp({ path: '/' });
 
-    expect(container).toHaveTextContent('창업하자, 아이디어는 내게 맡겨.');
+    expect(container).toHaveTextContent('창업하자! 아이디어는 내게 맡겨!');
   });
 
   it('renders links', () => {
     renderApp({ path: '/' });
 
-    expect(screen.getByRole('link', { name: /아이디어 기여하기/ })).toBeInTheDocument();
+    expect(screen.getByRole('link', { name: /기여하기/ })).toBeInTheDocument();
   });
 
   context('with path /', () => {
@@ -55,11 +55,11 @@ describe('App', () => {
       const { container } = renderApp({ path: '/' });
 
       expect(container)
-        .toHaveTextContent(`'${IDEA.who}'를 위한 '${IDEA.what}' 어때?`);
+        .toHaveTextContent(`'${IDEA.who}'를 위한 '${IDEA.what}'`);
     });
   });
 
-  context('with path /contribute', () => {
+  context('with path /contributing', () => {
     it('renders the contributing page', () => {
       const { container } = renderApp({ path: '/contributing' });
 
