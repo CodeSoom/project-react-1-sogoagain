@@ -6,7 +6,7 @@ export default function IdeaDescription({
   return (
     <div>
       <p>
-        {`'${who}'를 위한 '${what}'`}
+        {`${who}를 위한 ${what}`}
       </p>
       <button
         type="button"

@@ -37,7 +37,7 @@ describe('IdeaContainer', () => {
       it('renders idea', () => {
         render(<IdeaContainer />);
 
-        expect(screen.getByText(/'프로그래머'를 위한 '맛있는 라면'/)).toBeInTheDocument();
+        expect(screen.getByText(/프로그래머를 위한 맛있는 라면/)).toBeInTheDocument();
       });
 
       it('refreshes idea', () => {

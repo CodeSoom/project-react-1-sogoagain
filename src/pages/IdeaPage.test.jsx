@@ -30,7 +30,7 @@ describe('IdeaPage', () => {
   it('renders idea', () => {
     render(<IdeaPage />);
 
-    expect(screen.getByText(/'프로그래머'를 위한 '맛있는 라면'/)).toBeInTheDocument();
+    expect(screen.getByText(/프로그래머를 위한 맛있는 라면/)).toBeInTheDocument();
     expect(dispatch).toBeCalled();
   });
 });

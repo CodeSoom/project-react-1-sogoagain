@@ -1,6 +1,9 @@
-import { fetchIdea, postItem, postIdea } from './api';
+import {
+  fetchIdea, fetchIdeas, postItem, postIdea,
+} from './api';
 
 import IDEA from '../__fixtures__/idea';
+import IDEAS from '../__fixtures__/ideas';
 
 describe('api', () => {
   const mockFetch = (data) => {
@@ -37,6 +40,18 @@ describe('api', () => {
           expect(err.message).toEqual('ApiError');
         }
       });
+    });
+  });
+
+  describe('fetchIdeas', () => {
+    beforeEach(() => {
+      mockFetch(IDEAS);
+    });
+
+    it('fetch ideas', async () => {
+      const ideas = await fetchIdeas();
+
+      expect(ideas).toEqual(IDEAS);
     });
   });
 
