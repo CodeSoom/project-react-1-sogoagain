@@ -6,13 +6,13 @@ export default function IdeaDescription({
   return (
     <div>
       <p>
-        {`'${who}'를 위한 '${what}' 어때?`}
+        {`${who}를 위한 ${what}`}
       </p>
       <button
         type="button"
         onClick={onClickThink}
       >
-        생각하기
+        아이디어 있어?
       </button>
       <button
         type="button"
