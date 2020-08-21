@@ -1,6 +1,8 @@
-import React from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
+
+import Scrambler from 'scrambling-text';
 
 import { loadIdea, likeIdea } from '../features/ideaSlice';
 
@@ -13,6 +15,10 @@ export default function IdeaContainer() {
     loading, liked, alert: { type, message }, resource,
   } = useSelector((state) => state.idea);
 
+  const [who, setWho] = useState('');
+  const [what, setWhat] = useState('');
+  const textScramblersRef = useRef([new Scrambler(), new Scrambler()]);
+
   const handleClickThink = () => {
     dispatch(loadIdea());
   };
@@ -20,6 +26,11 @@ export default function IdeaContainer() {
   const handleClickLike = () => {
     dispatch(likeIdea());
   };
+
+  useEffect(() => {
+    textScramblersRef.current[0].scramble(resource.who, setWho);
+    textScramblersRef.current[1].scramble(resource.what, setWhat);
+  }, [resource]);
 
   if (loading) {
     return (
@@ -30,7 +41,7 @@ export default function IdeaContainer() {
   return (
     <>
       <IdeaDescription
-        idea={resource}
+        idea={{ who, what }}
         liked={liked || type}
         onClickThink={handleClickThink}
         onClickLike={handleClickLike}
