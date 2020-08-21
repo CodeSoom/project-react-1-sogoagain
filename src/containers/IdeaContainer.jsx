@@ -32,17 +32,12 @@ export default function IdeaContainer() {
     textScramblersRef.current[1].scramble(resource.what, setWhat);
   }, [resource]);
 
-  if (loading) {
-    return (
-      <p>생각중...</p>
-    );
-  }
-
   return (
     <>
       <IdeaDescription
         idea={{ who, what }}
         liked={liked || type}
+        loading={loading || !(resource.who === who && resource.what === what)}
         onClickThink={handleClickThink}
         onClickLike={handleClickLike}
       />

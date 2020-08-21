@@ -14,6 +14,7 @@ describe('IdeaDescription', () => {
     render(<IdeaDescription
       idea={IDEA}
       liked={given.liked}
+      loading={given.loading}
       onClickThink={handleClickThink}
       onClickLike={handleClickLike}
     />);
@@ -28,14 +29,6 @@ describe('IdeaDescription', () => {
     renderIdeaDescription();
 
     expect(screen.getByText(/프로그래머를 위한 맛있는 라면/)).toBeInTheDocument();
-  });
-
-  it('refreshes idea', () => {
-    renderIdeaDescription();
-
-    fireEvent.click(screen.getByRole('button', { name: '아이디어 있어?' }));
-
-    expect(handleClickThink).toBeCalled();
   });
 
   describe('likes idea', () => {
@@ -58,6 +51,30 @@ describe('IdeaDescription', () => {
         renderIdeaDescription();
 
         expect(screen.getByRole('button', { name: '좋아요' })).toBeDisabled();
+      });
+    });
+  });
+
+  describe('loading', () => {
+    context('when loading', () => {
+      given('loading', () => true);
+
+      it('disabled think button', () => {
+        renderIdeaDescription();
+
+        expect(screen.getByRole('button', { name: '아이디어 있어?' })).toBeDisabled();
+      });
+    });
+
+    context('when not loading', () => {
+      given('loading', () => false);
+
+      it('refreshes idea', () => {
+        renderIdeaDescription();
+
+        fireEvent.click(screen.getByRole('button', { name: '아이디어 있어?' }));
+
+        expect(handleClickThink).toBeCalled();
       });
     });
   });

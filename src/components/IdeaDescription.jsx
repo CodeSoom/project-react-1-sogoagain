@@ -1,7 +1,7 @@
 import React from 'react';
 
 export default function IdeaDescription({
-  idea: { who, what }, liked, onClickThink, onClickLike,
+  idea: { who, what }, liked, loading, onClickThink, onClickLike,
 }) {
   return (
     <div>
@@ -11,6 +11,7 @@ export default function IdeaDescription({
       <button
         type="button"
         onClick={onClickThink}
+        disabled={loading}
       >
         아이디어 있어?
       </button>

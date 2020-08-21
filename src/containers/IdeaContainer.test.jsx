@@ -87,10 +87,10 @@ describe('IdeaContainer', () => {
       message: '',
     }));
 
-    it('renders loading', () => {
+    it('disabled think button', () => {
       render(<IdeaContainer />);
 
-      expect(screen.getByText(/생각중/)).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: '아이디어 있어?' })).toBeDisabled();
     });
   });
 });
