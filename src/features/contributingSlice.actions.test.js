@@ -1,4 +1,4 @@
-import thunk from 'redux-thunk';
+import { getDefaultMiddleware } from '@reduxjs/toolkit';
 
 import configureStore from 'redux-mock-store';
 
@@ -9,8 +9,7 @@ import { setField, contributeItem } from './contributingSlice';
 jest.useFakeTimers();
 jest.mock('../services/api');
 
-const middlewares = [thunk];
-const mockStore = configureStore(middlewares);
+const mockStore = configureStore(getDefaultMiddleware());
 
 describe('contributing actions', () => {
   let store;
