@@ -11,6 +11,8 @@ import App from './App';
 
 import store from './store';
 
+import './assets/css/main.css';
+
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter basename={process.env.BASE_PATH}>

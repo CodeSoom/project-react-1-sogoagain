@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Nanum+Gothic:wght@400;700;800&family=Yeon+Sung&display=swap');
+
+* {
+  box-sizing: border-box;
+}
+
+body,
+button {
+  font-family: 'Yeon Sung', cursive;
+  font-size: 1rem;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  background: #FFF;
+  color: #000;
+}
+
+h1,
+h2 {
+  font-family: 'Nanum Gothic', sans-serif;
+  /* font-family: 'Nanum Gothic Coding', monospace; */
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}

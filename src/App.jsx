@@ -11,7 +11,7 @@ export default function App() {
   return (
     <>
       <Link to="/">
-        <Header title="창업하자! 아이디어는 내게 맡겨!" />
+        <Header primary="창업하자!" secondary="아이디어는 내게 맡겨!" />
       </Link>
       <Link to="/ideas">
         구경가기

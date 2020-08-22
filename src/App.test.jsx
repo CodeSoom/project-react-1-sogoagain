@@ -46,7 +46,7 @@ describe('App', () => {
   it('renders title', () => {
     const { container } = renderApp({ path: '/' });
 
-    expect(container).toHaveTextContent('창업하자! 아이디어는 내게 맡겨!');
+    expect(container).toHaveTextContent('창업하자!아이디어는 내게 맡겨!');
   });
 
   it('renders links', () => {
