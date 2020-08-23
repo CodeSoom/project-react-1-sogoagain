@@ -40,7 +40,7 @@ describe('idea actions', () => {
         const actions = store.getActions();
 
         expect(fetchIdea).toBeCalled();
-        expect(actions[2]).toEqual(setIdea(IDEA));
+        expect(actions[3]).toEqual(setIdea(IDEA));
       });
     });
 
@@ -56,11 +56,11 @@ describe('idea actions', () => {
         const actions = store.getActions();
 
         expect(fetchIdea).toBeCalled();
-        expect(actions[2]).toEqual(setAlert({
+        expect(actions[3]).toEqual(setAlert({
           type: 'error',
           message: '생각이 잘 안나네요, 다시 생각해볼까요?',
         }));
-        expect(actions[3]).toEqual(setIdea({
+        expect(actions[4]).toEqual(setIdea({
           who: '?',
           what: '?',
         }));

@@ -36,7 +36,7 @@ a {
   color: #000;
 }
 
-a:hover {
+a:active {
   color: #828282;
 }
 

@@ -60,6 +60,7 @@ export function loadIdea() {
     batch(() => {
       dispatch(setLoading(true));
       dispatch(setAlert({ type: '', message: '' }));
+      dispatch(setIdea({ who: '', what: '' }));
     });
 
     let idea;

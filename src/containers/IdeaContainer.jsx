@@ -15,8 +15,8 @@ export default function IdeaContainer() {
     loading, liked, alert: { type, message }, resource,
   } = useSelector((state) => state.idea);
 
-  const [who, setWho] = useState('');
-  const [what, setWhat] = useState('');
+  const [who, setWho] = useState(resource.who);
+  const [what, setWhat] = useState(resource.what);
   const textScramblersRef = useRef([new Scrambler(), new Scrambler()]);
 
   const handleClickThink = () => {
@@ -28,8 +28,15 @@ export default function IdeaContainer() {
   };
 
   useEffect(() => {
-    textScramblersRef.current[0].scramble(resource.who, setWho);
-    textScramblersRef.current[1].scramble(resource.what, setWhat);
+    if (!resource.who || !resource.what) {
+      return;
+    }
+    if (resource.who !== who) {
+      textScramblersRef.current[0].scramble(resource.who, setWho);
+    }
+    if (resource.what !== what) {
+      textScramblersRef.current[1].scramble(resource.what, setWhat);
+    }
   }, [resource]);
 
   return (
