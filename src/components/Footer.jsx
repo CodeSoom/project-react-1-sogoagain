@@ -5,10 +5,14 @@ import styled from '@emotion/styled';
 import { FOOTER_HEIGHT, secondary } from '../styles/constants';
 
 const Wrapper = styled.footer({
+  position: 'fixed',
+  left: '0',
+  bottom: '0',
+  width: '100%',
+  height: FOOTER_HEIGHT,
+  color: secondary,
   textAlign: 'center',
   fontSize: '1rem',
-  color: secondary,
-  height: FOOTER_HEIGHT,
 });
 
 export default function Footer() {
