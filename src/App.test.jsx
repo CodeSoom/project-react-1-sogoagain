@@ -78,7 +78,7 @@ describe('App', () => {
     it('renders the idea list page', () => {
       const { container } = renderApp({ path: '/ideas' });
 
-      expect(container).toHaveTextContent('좋은 아이디어들을 구경해요');
+      expect(container).toHaveTextContent('이런 아이디어들은 어때요?');
     });
   });
 });

@@ -25,12 +25,6 @@ body {
   color: #000;
 }
 
-h1,
-h2 {
-  font-family: 'Nanum Gothic', sans-serif;
-  /* font-family: 'Nanum Gothic Coding', monospace; */
-}
-
 a {
   text-decoration: none;
   color: #000;
@@ -61,5 +55,14 @@ a:active {
   }
   to {
     transform: scale(0.85);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
   }
 }

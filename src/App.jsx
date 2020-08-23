@@ -15,10 +15,6 @@ import {
 } from './styles/constants';
 
 const PageWrapper = styled.section({
-  display: 'flex',
-  flexDirection: 'column',
-  justifyContent: 'space-around',
-  alignItems: 'center',
   height: `calc(100vh - ${HEADER_HEIGHT} - ${FOOTER_HEIGHT} - ${NAV_HEIGHT})`,
 });
 
