@@ -6,8 +6,8 @@ import PageHeader from './PageHeader';
 
 describe('PageHeader', () => {
   it('renders page header', () => {
-    render(<PageHeader title="아이디어 기여" />);
+    render(<PageHeader>좋은 아이디어가 있나요?</PageHeader>);
 
-    expect(screen.getByText(/아이디어 기여/)).toBeInTheDocument();
+    expect(screen.getByText(/좋은 아이디어가 있나요?/)).toBeInTheDocument();
   });
 });

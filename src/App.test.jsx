@@ -12,6 +12,7 @@ import IDEA from './__fixtures__/idea';
 import IDEAS from './__fixtures__/ideas';
 
 jest.mock('react-redux');
+jest.mock('./assets');
 
 function renderApp({ path }) {
   return render((
@@ -46,7 +47,7 @@ describe('App', () => {
   it('renders title', () => {
     const { container } = renderApp({ path: '/' });
 
-    expect(container).toHaveTextContent('창업하자! 아이디어는 내게 맡겨!');
+    expect(container).toHaveTextContent('창업하자!아이디어는 내게 맡겨!');
   });
 
   it('renders links', () => {
@@ -61,7 +62,7 @@ describe('App', () => {
       const { container } = renderApp({ path: '/' });
 
       expect(container)
-        .toHaveTextContent(`${IDEA.who}를 위한 ${IDEA.what}`);
+        .toHaveTextContent(`${IDEA.who}을(를) 위한${IDEA.what}`);
     });
   });
 
@@ -77,7 +78,7 @@ describe('App', () => {
     it('renders the idea list page', () => {
       const { container } = renderApp({ path: '/ideas' });
 
-      expect(container).toHaveTextContent('좋은 아이디어들을 구경해요');
+      expect(container).toHaveTextContent('이런 아이디어들은 어때요?');
     });
   });
 });

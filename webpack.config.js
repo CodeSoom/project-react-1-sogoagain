@@ -31,6 +31,10 @@ module.exports = (env, argv) => ({
         exclude: /node_modules/,
         use: ['style-loader', { loader: 'css-loader' }],
       },
+      {
+        test: /\.(png|svg|jpg|gif|mp4)$/i,
+        use: 'file-loader',
+      },
     ],
   },
   resolve: {

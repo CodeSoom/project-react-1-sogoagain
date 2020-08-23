@@ -27,8 +27,8 @@ describe('IdeasPage', () => {
   it('renders idea list', () => {
     const { container } = render(<IdeasPage />);
 
-    expect(container).toHaveTextContent('좋은 아이디어들을 구경해요');
-    expect(screen.getByText(/프로그래머를 위한 빠른 자동차/)).toBeInTheDocument();
+    expect(container).toHaveTextContent('이런 아이디어들은 어때요?');
+    expect(screen.getByText(/프로그래머의 빠른 자동차/)).toBeInTheDocument();
     expect(dispatch).toBeCalled();
   });
 });

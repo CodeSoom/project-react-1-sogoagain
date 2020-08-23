@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding:wght@400;700&family=Nanum+Gothic:wght@400;700;800&family=Yeon+Sung&display=swap');
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: transparent;
+}
+
+html {
+  font-size: 16px;
+}
+
+body,
+button {
+  font-family: 'Yeon Sung', cursive;
+  font-size: 1rem;
+}
+
+body {
+  overflow: hidden;
+  margin: 0;
+  padding: 0;
+  background: #FFF;
+  color: #000;
+}
+
+a {
+  text-decoration: none;
+  color: #000;
+}
+
+a:active {
+  color: #828282;
+}
+
+@keyframes like-init {
+  from, 15% { transform: scale(0.85); }
+  40% { transform: scale(0.95); }
+  70% {
+    animation-timing-function: cubic-bezier(0.215, 0.6, 0.355, 1);
+    transform: scale(0.75);
+  }
+  to {
+    transform: scale(0.85);
+  }
+}
+
+@keyframes like-scale {
+  from, 15% { transform: scale(0.3); }
+  40% { transform: scale(0.95); }
+  70% {
+    animation-timing-function: cubic-bezier(0.215, 0.6, 0.355, 1);
+    transform: scale(0.75);
+  }
+  to {
+    transform: scale(0.85);
+  }
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}

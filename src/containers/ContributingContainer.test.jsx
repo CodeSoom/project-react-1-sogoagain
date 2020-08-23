@@ -68,7 +68,7 @@ describe('ContributingPage', () => {
     it('renders loading', () => {
       render(<ContributingContainer />);
 
-      expect(screen.getByText(/정리중/)).toBeInTheDocument();
+      expect(screen.getByRole('button', { name: '기여하기' })).toBeDisabled();
     });
   });
 });

@@ -2,13 +2,14 @@ import React from 'react';
 
 import { useDispatch, useSelector } from 'react-redux';
 
-import { render, screen } from '@testing-library/react';
+import { render } from '@testing-library/react';
 
 import IdeaPage from './IdeaPage';
 
 import IDEA from '../__fixtures__/idea';
 
 jest.mock('react-redux');
+jest.mock('../assets');
 
 describe('IdeaPage', () => {
   const dispatch = jest.fn();
@@ -28,9 +29,9 @@ describe('IdeaPage', () => {
   });
 
   it('renders idea', () => {
-    render(<IdeaPage />);
+    const { container } = render(<IdeaPage />);
 
-    expect(screen.getByText(/프로그래머를 위한 맛있는 라면/)).toBeInTheDocument();
+    expect(container).toHaveTextContent('프로그래머을(를) 위한맛있는 라면');
     expect(dispatch).toBeCalled();
   });
 });
