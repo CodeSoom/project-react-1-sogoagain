@@ -12,6 +12,7 @@ import IDEA from './__fixtures__/idea';
 import IDEAS from './__fixtures__/ideas';
 
 jest.mock('react-redux');
+jest.mock('./assets');
 
 function renderApp({ path }) {
   return render((
@@ -61,7 +62,7 @@ describe('App', () => {
       const { container } = renderApp({ path: '/' });
 
       expect(container)
-        .toHaveTextContent(`${IDEA.who}를 위한 ${IDEA.what}`);
+        .toHaveTextContent(`${IDEA.who}을(를) 위한${IDEA.what}`);
     });
   });
 

@@ -9,6 +9,7 @@ import IdeaContainer from './IdeaContainer';
 import IDEA from '../__fixtures__/idea';
 
 jest.mock('react-redux');
+jest.mock('../assets');
 
 describe('IdeaContainer', () => {
   const dispatch = jest.fn();
@@ -37,7 +38,8 @@ describe('IdeaContainer', () => {
       it('renders idea', () => {
         render(<IdeaContainer />);
 
-        expect(screen.getByText(/프로그래머를 위한 맛있는 라면/)).toBeInTheDocument();
+        expect(screen.getByText(/프로그래머/)).toBeInTheDocument();
+        expect(screen.getByText(/맛있는 라면/)).toBeInTheDocument();
       });
 
       it('refreshes idea', () => {

@@ -18,7 +18,7 @@ export default function IdeasContainer() {
       <PageHeader title="좋은 아이디어들을 구경해요" />
       <ol>
         {resources.map(({ id, who, what }) => (
-          <li key={id}>{`${who}를 위한 ${what}`}</li>
+          <li key={id}>{`${who}의 ${what}`}</li>
         ))}
       </ol>
     </>

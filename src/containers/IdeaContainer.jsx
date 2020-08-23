@@ -41,7 +41,7 @@ export default function IdeaContainer() {
         onClickThink={handleClickThink}
         onClickLike={handleClickLike}
       />
-      {type && (<Alert message={message} />)}
+      <Alert show={type} message={message} />
     </>
   );
 }

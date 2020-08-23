@@ -6,6 +6,8 @@ import IdeaDescription from './IdeaDescription';
 
 import IDEA from '../__fixtures__/idea';
 
+jest.mock('../assets');
+
 describe('IdeaDescription', () => {
   const handleClickThink = jest.fn();
   const handleClickLike = jest.fn();
@@ -28,7 +30,8 @@ describe('IdeaDescription', () => {
   it('renders idea', () => {
     renderIdeaDescription();
 
-    expect(screen.getByText(/프로그래머를 위한 맛있는 라면/)).toBeInTheDocument();
+    expect(screen.getByText(/프로그래머/)).toBeInTheDocument();
+    expect(screen.getByText(/맛있는 라면/)).toBeInTheDocument();
   });
 
   describe('likes idea', () => {
