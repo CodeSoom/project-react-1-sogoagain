@@ -4,7 +4,9 @@ import styled from '@emotion/styled';
 
 import { LikeOnImage, LikeOffImage } from '../assets';
 
-import { white, primary, secondary } from '../styles/constants';
+import { white } from '../styles/constants';
+
+import Button from './Button';
 
 const Idea = styled.div({
   textAlign: 'center',
@@ -25,24 +27,6 @@ const IdeaPart = styled.p({
   borderBottom: '1px solid #000',
   margin: '0 auto',
   verticalAlign: 'middle',
-});
-
-const Button = styled.button({
-  backgroundColor: primary,
-  color: white,
-  border: 'none',
-  borderRadius: '5.6px',
-  width: '300px',
-  height: '50px',
-  fontSize: '2.25rem',
-  cursor: 'pointer',
-  transition: '0.3s',
-  ':active': {
-    backgroundColor: secondary,
-  },
-  ':disabled': {
-    backgroundColor: secondary,
-  },
 });
 
 const LikeButton = styled.button({

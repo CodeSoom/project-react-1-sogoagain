@@ -1,16 +1,28 @@
 import React from 'react';
 
+import styled from '@emotion/styled';
+
 import TextField from './TextField';
+import Button from './Button';
+
+const Wrapper = styled.form({
+  height: '100%',
+  display: 'flex',
+  flexDirection: 'column',
+  justifyContent: 'space-around',
+  alignItems: 'center',
+});
 
 export default function IdeaItemForm({
-  fields: { who, what }, onSubmit, onChange,
+  fields: { who, what }, loading, onSubmit, onChange,
 }) {
   return (
-    <form onSubmit={onSubmit}>
+    <Wrapper onSubmit={onSubmit}>
       <TextField
         label="누구를 위한 것인가요?"
         name="who"
         type="text"
+        max={10}
         value={who}
         onChange={onChange}
       />
@@ -18,10 +30,16 @@ export default function IdeaItemForm({
         label="어떤 것인가요?"
         name="what"
         type="text"
+        max={10}
         value={what}
         onChange={onChange}
       />
-      <button type="submit">기여하기</button>
-    </form>
+      <Button
+        type="submit"
+        disabled={loading}
+      >
+        기여하기
+      </Button>
+    </Wrapper>
   );
 }

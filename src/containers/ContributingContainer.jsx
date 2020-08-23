@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setField, contributeItem } from '../features/contributingSlice';
 
 import PageHeader from '../components/PageHeader';
+import Alert from '../components/Alert';
 import IdeaItemForm from '../components/IdeaItemForm';
 
 export default function ContributingContainer() {
@@ -20,21 +21,18 @@ export default function ContributingContainer() {
     dispatch(contributeItem());
   };
 
-  if (loading) {
-    return (
-      <p>정리중...</p>
-    );
-  }
-
   return (
     <>
-      <PageHeader title="아이디어 기여" />
+      <PageHeader>
+        감사합니다
+      </PageHeader>
       <IdeaItemForm
         fields={{ who, what }}
+        loading={loading}
         onChange={handleChange}
         onSubmit={handleSubmit}
       />
-      <p>{message}</p>
+      <Alert show={message !== ''} message={message} />
     </>
   );
 }

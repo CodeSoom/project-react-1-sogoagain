@@ -47,7 +47,7 @@ export function contributeItem() {
     batch(() => {
       dispatch(setField({ name: 'who', value: '' }));
       dispatch(setField({ name: 'what', value: '' }));
-      dispatch(setMessage('감사합니다! 좋은 아이디어네요.'));
+      dispatch(setMessage('좋은 아이디어네요! 빠른 시일내에 반영할게요.'));
       dispatch(setLoading(false));
     });
     setTimeout(() => {
