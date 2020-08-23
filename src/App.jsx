@@ -10,7 +10,9 @@ import IdeaPage from './pages/IdeaPage';
 import IdeasPage from './pages/IdeasPage';
 import ContributingPage from './pages/ContributingPage';
 
-import { HEADER_HEIGHT, FOOTER_HEIGHT, NAV_HEIGHT } from './styles/constants';
+import {
+  HEADER_HEIGHT, FOOTER_HEIGHT, NAV_HEIGHT, EXTRA_SMALL,
+} from './styles/constants';
 
 const PageWrapper = styled.section({
   display: 'flex',
@@ -26,7 +28,7 @@ const NavWrapper = styled.nav({
   justifyContent: 'space-around',
   alignItems: 'center',
   height: NAV_HEIGHT,
-  maxWidth: '480px',
+  maxWidth: EXTRA_SMALL,
   margin: '0 auto',
   '& a': {
     fontSize: '1.5rem',
