@@ -1,5 +1,7 @@
 # 창업하자! 아이디어는 내게 맡겨!
 
+[![Build Status](https://github.com/sogoagain/idea-box-frontend/workflows/CI/badge.svg)](https://github.com/sogoagain/idea-box-frontend/actions)
+
 ## 접속 URL
 
 - [https://idea.sogoagain.com](https://idea.sogoagain.com)
