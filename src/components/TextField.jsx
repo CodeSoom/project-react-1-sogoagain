@@ -18,12 +18,11 @@ const Label = styled.label({
 
 const Input = styled.input({
   width: '320px',
-  height: '4rem',
+  height: '2rem',
   fontFamily: "'Nanum Gothic Coding', monospace",
   fontWeight: 'bold',
   fontSize: '1.2rem',
   letterSpacing: '0.3rem',
-  lineHeight: '4rem',
   textAlign: 'center',
   border: 'none',
   borderBottom: '1px solid #000',

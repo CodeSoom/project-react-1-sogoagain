@@ -15,7 +15,7 @@ import {
 } from './styles/constants';
 
 const PageWrapper = styled.section({
-  height: `calc(100vh - ${HEADER_HEIGHT} - ${FOOTER_HEIGHT} - ${NAV_HEIGHT})`,
+  height: `calc(90vh - ${HEADER_HEIGHT} - ${FOOTER_HEIGHT} - ${NAV_HEIGHT})`,
 });
 
 const NavWrapper = styled.nav({
