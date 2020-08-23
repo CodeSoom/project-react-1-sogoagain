@@ -37,7 +37,10 @@ const Button = styled.button({
   fontSize: '2.25rem',
   cursor: 'pointer',
   transition: '0.3s',
-  ':hover': {
+  ':active': {
+    backgroundColor: secondary,
+  },
+  ':disabled': {
     backgroundColor: secondary,
   },
 });
@@ -47,6 +50,7 @@ const LikeButton = styled.button({
   width: '53px',
   height: '50px',
   border: 'none',
+  outline: 'none',
   cursor: 'pointer',
   fontSize: '0',
   transform: 'scale(0.85)',
