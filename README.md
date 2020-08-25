@@ -1,8 +1,19 @@
-# 창업하자! 아이디어는 내게 맡겨!
+<div align="center">
+  <h1>창업하자! 아이디어는 내게 맡겨!</h1>
 
-[![Build Status](https://github.com/sogoagain/idea-box-frontend/workflows/CI/badge.svg)](https://github.com/sogoagain/idea-box-frontend/actions)
+  <p>아이디어가 생각이 잘 안 나시나요? 그럼 이용해보세요.</p>
+  <a href="https://idea.sogoagain.com/">이용하기<a>
 
-![preview](./preview.gif)
+  <br />
+  <hr />
+  <p>
+    <a href="https://github.com/sogoagain/idea-box-frontend/actions"><img alt="Build Status" src="https://github.com/sogoagain/idea-box-frontend/workflows/CI/badge.svg"></a>
+  </p>
+  <img
+    alt="preview"
+    src="https://raw.githubusercontent.com/sogoagain/idea-box-frontend/master/preview.gif"
+  />
+</div>
 
 ## 접속 URL
 
