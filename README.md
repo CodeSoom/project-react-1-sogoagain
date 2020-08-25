@@ -2,6 +2,8 @@
 
 [![Build Status](https://github.com/sogoagain/idea-box-frontend/workflows/CI/badge.svg)](https://github.com/sogoagain/idea-box-frontend/actions)
 
+![preview](./preview.gif)
+
 ## 접속 URL
 
 - [https://idea.sogoagain.com](https://idea.sogoagain.com)
